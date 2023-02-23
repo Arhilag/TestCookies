@@ -9,6 +9,7 @@ public class BallMover : MonoBehaviour
     [SerializeField] private float _speedChange = 0.0005f;
     private Vector3 _direction;
     private bool _isMove;
+    private float _xRestriction = 3.7f;
 
     public Action<Vector3> OnChangeDirection;
     public Action<float> OnChangeSpeed;
@@ -17,6 +18,7 @@ public class BallMover : MonoBehaviour
     {
         if (!_isMove)
         {
+            transform.SetParent(null);
             _isMove = true;
             _direction = new Vector3(Random.Range(-1f,1f), 0,1).normalized;
             OnChangeSpeed?.Invoke(_speed);
